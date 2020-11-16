@@ -1,0 +1,11 @@
+Peter B-PER
+Such I-PER
+won O
+at O
+London B-LOC
+
+Such B-PER
+is O
+happy O
+
+Beyoncé B-PER

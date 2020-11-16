@@ -1,0 +1,80 @@
+exp_id: "NAME_OF_EXPERIMENT"
+artifact_dir: "local/artifacts"
+model_load_id: ""  # Empty to not load model. To load a model from artifact_dir, put the exp_id
+conlleval_path: "scripts/conlleval.pl"
+conll:
+  train: "local/data/CoNLL_train"
+  testa: "local/data/CoNLL_testa"
+  testb: "local/data/CoNLL_testb"
+language: "en"  # {"en", "de", "nl"} manually align with the dataset
+
+glove_dim: 100  # dimension of the GloVe or FastText embedding (100 for Glove and 300 for fasttext)
+glove_cache: "local/data/glove"
+fasttext_cache: "local/data/fasttext"
+
+# CharCNN hyperparameters
+char_embed_dim: 25
+char_kernel_size: 3
+char_num_kernels: 100  # i.e. the dimension of CharCNN embeddings
+
+flair_enabled: true
+flair_compute_cache: false  # When set to True, compute the embedding cache instead of training.
+flair_cache_path: "local/artifacts/flair_cache/{LANGUAGE}.pt"  # The pre-computed Flair embeddings for CoNLL datasets
+flair_cache_enabled: true
+flair_cutoff_dim: null  # Option to only use the non-textual embeddings
+flair_with_char_cnn: false
+
+# RNN hyperparameters
+rnn_type: "LSTM"  # {"LSTM", "GRU"}
+rnn_hidden_dim: 200  # per direction
+rnn_num_layers: 2
+
+# Decoder
+decoder: "factor_graph"  # "factor_graph" for Gibbs sampling; "linear_chain" for exact inference
+decoder_hidden_dim: 200  # Only used with "linear_chain"
+skip_chain_enabled: true
+
+# Factor hyperparameters
+unary_hidden_dim: 200
+binary_hidden_dim: 500
+
+# Sampling hyperparameters
+inf_num_samples: 120  # Number of samples to take at inference time
+inf_num_processes: 4
+num_ensemble_runs: 3
+init_temp: 10
+anneal_rate: 0.95
+min_temp: 0.01
+block_sampling: true
+
+train_num_samples: 10
+train_init_with_oracle: true
+gold_loss_enabled: true
+pair_loss_enabled: true
+
+# General
+train_with_dev: false
+batch_size: 2
+num_epochs: 120
+dropout: 0.5
+learning_rate: 0.001
+lr_scheduler: true
+gradient_clip: 1
+print_freq: 3
+eval_print_freq: 15
+
+embed_dropout: 0.0  # Set to null to follow the main dropout value
+word_dropout: 0.05
+locked_dropout: 0.5
+
+continue_from_checkpoint: false
+load_test: false  # Whether to load model and evaluate
+ignore_test_set: false  # Set to true to only evaluate on dev set
+repeat_eval_runs: 1  # Times to repeat evaluation runs
+dump_history: false  # Dump sampling history during inference
+max_train_size: null  # Put null for unlimited dataset size
+max_eval_size: null
+
+logging_level: "info"  # "debug" or "info"
+
+cpp_sampling: true

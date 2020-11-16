@@ -1,0 +1,8 @@
+torch
+torchtext
+pyyaml
+flair
+
+pytest
+pytest-datadir
+pytest-cov

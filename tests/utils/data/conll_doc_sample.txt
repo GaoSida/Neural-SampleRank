@@ -1,0 +1,34 @@
+-DOCSTART- O
+
+Peter B-PER
+Such I-PER
+won O
+at O
+London B-LOC
+
+Such B-PER
+is O
+happy O
+
+Peter B-PER
+returned O
+home O
+today O
+
+-DOCSTART- O
+
+Beyoncé B-PER
+releases O
+album O
+
+-DOCSTART- O
+
+Nook B-LOC
+'s I-LOC
+Cranny I-LOC
+opens O
+today O
+
+Tom B-PER
+Nook I-PER
+
